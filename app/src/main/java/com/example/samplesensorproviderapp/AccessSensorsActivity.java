@@ -12,12 +12,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class AccessSensorsActivity extends AppCompatActivity {
 
     private SensorManager sensorManager;
-    private Sensor mLight, mTemperature;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +26,11 @@ public class AccessSensorsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_access_sensors);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        TextView textView = (TextView) findViewById(R.id.textViewLuminosity);
-        //mTemperature = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
-        //List<Sensor> deviceSensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
-        //EditText sensorInfoField = (EditText) findViewById(R.id.editTextSensorInfo);
-        //sensorInfoField.setText(deviceSensors.toString());
+        TextView textViewLuminosity = (TextView) findViewById(R.id.textViewLuminosity);
+        TextView textViewTemperature = (TextView) findViewById(R.id.textViewTemperature);
 
-        LightSensorAccess lightSensorAccess = new LightSensorAccess(sensorManager, textView);
-
-
+        LightSensorAccess lightSensorAccess = new LightSensorAccess(sensorManager, textViewLuminosity);
+        TemperatureSensorAccess temperatureSensorAccess = new TemperatureSensorAccess(sensorManager, textViewTemperature);
     }
-
 }
 
